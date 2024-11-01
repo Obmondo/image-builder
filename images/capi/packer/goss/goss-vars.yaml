@@ -144,10 +144,7 @@ centos:
   amazon:
     package:
       amazon-ssm-agent:
-    os_version:
-    - distro_version: "7"
-      package:
-        <<: *rh7_rpms
+      <<: *rh7_rpms
     command:
       /usr/local/sbin/aws --version:
         exit-status: 0
@@ -160,23 +157,19 @@ centos:
     package:
       python2-pip:
       open-vm-tools:
-    os_version:
-    - distro_version: "7"
-      package:
-        <<: *rh7_rpms
+      <<: *rh7_rpms
   qemu:
     package:
       open-vm-tools:
       cloud-init:
       cloud-utils-growpart:
-    os_version:
-    - distro_version: "7"
-      package:
-        python2-pip:
-        <<: *rh7_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      python2-pip:
+      <<: *rh7_rpms
+  raw:
+    package:
+      cloud-init:
+      cloud-utils-growpart:
+      python2-pip:
   hcloud:
     package:
       cloud-init:
@@ -232,15 +225,15 @@ photon:
       cloud-utils:
       python3-netifaces:
     os_version:
-    - distro_version: "3"
-      package:
-        <<: *photon_3_rpms
-    - distro_version: "4"
-      package:
-        <<: *photon_4_rpms
-    - distro_version: "5"
-      package:
-        <<: *photon_5_rpms
+      - distro_version: "3"
+        package:
+          <<: *photon_3_rpms
+      - distro_version: "4"
+        package:
+          <<: *photon_4_rpms
+      - distro_version: "5"
+        package:
+          <<: *photon_5_rpms
 azurelinux:
   common-package: *common_azurelinux_rpms
   azure:
@@ -256,10 +249,7 @@ rockylinux:
   amazon:
     package:
       amazon-ssm-agent:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
+      <<: *rh8_rpms
     command:
       /usr/local/sbin/aws --version:
         exit-status: 0
@@ -273,39 +263,39 @@ rockylinux:
     package:
       open-vm-tools:
     os_version:
-    - distro_version: "8"
-      package:
-        python2-pip:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      - distro_version: "7"
+        package:
+          python2-pip:
+          <<: *rh7_rpms
+      - distro_version: "8"
+        package:
+          python2-pip:
+          <<: *rh8_rpms
+      - distro_version: "9"
+        package:
+          <<: *rh9_rpms
   qemu:
     package:
       open-vm-tools:
       cloud-init:
       cloud-utils:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      python3-netifaces:
+      <<: *rh8_rpms
+  raw:
+    package:
+      cloud-init:
+      cloud-utils:
+      python3-netifaces:
+      <<: *rh8_rpms
   nutanix:
     package:
       cloud-init:
+      python3-netifaces:
       iscsi-initiator-utils:
       nfs-utils:
       lvm2:
       xfsprogs:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      <<: *rh8_rpms
     service:
       iscsid:
         enabled: true
@@ -314,19 +304,17 @@ rockylinux:
     package:
       cloud-init:
       cloud-utils-growpart:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
+      python3-netifaces:
+      <<: *rh8_rpms
 rhel:
   common-package: *common_rpms
   amazon:
     package:
       amazon-ssm-agent:
     os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
+      - distro_version: "8"
+        package:
+          <<: *rh8_rpms
     command:
       /usr/local/sbin/aws --version:
         exit-status: 0
@@ -340,9 +328,9 @@ rhel:
     package:
       open-vm-tools:
     os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
+      - distro_version: "8"
+        package:
+          <<: *rh8_rpms
   gcp:
     command:
       find -L /bin -maxdepth 1 -type f -executable -printf "%f\n" | grep -Fx 'gcloud':
@@ -351,61 +339,46 @@ rhel:
         stderr: []
         timeout: 0
     os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
+      - distro_version: "8"
+        package:
+          <<: *rh8_rpms
   ova:
     package:
       open-vm-tools:
     os_version:
-    - distro_version: "7"
-      package:
-        python2-pip:
-        <<: *rh7_rpms
-    - distro_version: "8"
-      package:
-        python2-pip:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      - distro_version: "7"
+        package:
+          python2-pip:
+          <<: *rh7_rpms
+      - distro_version: "8"
+        package:
+          python2-pip:
+          <<: *rh8_rpms
+      - distro_version: "9"
+        package:
+          <<: *rh9_rpms
   qemu:
     package:
       open-vm-tools:
       cloud-init:
       cloud-utils-growpart:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      python2-pip:
+      <<: *rh7_rpms
   raw:
     package:
       cloud-init:
       cloud-utils-growpart:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      python2-pip:
+      <<: *rh7_rpms
   nutanix:
     package:
       cloud-init:
+      python3-netifaces:
       iscsi-initiator-utils:
       nfs-utils:
       lvm2:
       xfsprogs:
-    os_version:
-    - distro_version: "8"
-      package:
-        <<: *rh8_rpms
-    - distro_version: "9"
-      package:
-        <<: *rh9_rpms
+      <<: *rh8_rpms
     service:
       iscsid:
         enabled: true
@@ -436,7 +409,6 @@ ubuntu:
         title: "Check exact for the contents in /etc/cloud/cloud.cfg.d/15_azure-vnet.cfg"
     package:
       open-vm-tools:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
       <<: *chrony_deb
     service:
@@ -449,7 +421,6 @@ ubuntu:
         enabled: true
         running: true
     package:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
     command:
       snap list | grep 'amazon-ssm-agent' | awk -F' ' '{print $1}':
@@ -463,7 +434,6 @@ ubuntu:
         timeout: 0
   gcp:
     package:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
     command:
       find -L /bin -maxdepth 1 -type f -executable -printf "%f\n" | grep -Fx 'gcloud':
@@ -477,7 +447,6 @@ ubuntu:
     command:
   outscale:
     package:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
   ova:
     service:
@@ -485,7 +454,6 @@ ubuntu:
         enabled: true
         running: true
     package:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
       open-vm-tools:
       cloud-guest-utils:
@@ -497,7 +465,6 @@ ubuntu:
         enabled: true
         running: true
     package:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
       open-vm-tools:
       cloud-guest-utils:
@@ -512,7 +479,6 @@ ubuntu:
       linux-tools-generic:
   nutanix:
     package:
-      linux-cloud-tools-virtual:
       linux-tools-virtual:
       cloud-guest-utils:
       cloud-initramfs-copymods:
@@ -549,10 +515,10 @@ windows:
   common-windows-features:
     Hyper-V-PowerShell:
       expected:
-      - Installed
+        - Installed
     Containers:
       expected:
-      - Installed
+        - Installed
 
   common-files:
     c:/etc/kubernetes/pki:
@@ -575,95 +541,95 @@ windows:
   common-windows-service:
     cloudbase-init:
       expected:
-      - Manual
-      - Stopped
+        - Manual
+        - Stopped
     kubelet:
       expected:
-      - Automatic
-      - "/RequiredServices.+:.+(containerd|docker)/"
+        - Automatic
+        - "/RequiredServices.+:.+(containerd|docker)/"
     sshd:
       expected:
-      - Automatic
-      - Running
+        - Automatic
+        - Running
 
   azure:
     windows-service:
 
     files:
-      'c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf':
+      "c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf":
         exists: true
         filetype: file
         contains:
-        - "COM2,115200,N,8"
-        - "metadata_services=cloudbaseinit.metadata.services.azureservice.AzureService"
-        - "cloudbaseinit.plugins.common.userdata.UserDataPlugin"
-        - "cloudbaseinit.plugins.windows.createuser.CreateUserPlugin"
-        - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
-        - "cloudbaseinit.plugins.windows.azureguestagent.AzureGuestAgentPlugin"
-        - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
-        - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
+          - "COM2,115200,N,8"
+          - "metadata_services=cloudbaseinit.metadata.services.azureservice.AzureService"
+          - "cloudbaseinit.plugins.common.userdata.UserDataPlugin"
+          - "cloudbaseinit.plugins.windows.createuser.CreateUserPlugin"
+          - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
+          - "cloudbaseinit.plugins.windows.azureguestagent.AzureGuestAgentPlugin"
+          - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
+          - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
   ova:
     windows-service:
       vmtools:
         expected:
-        - Automatic
-        - Running
+          - Automatic
+          - Running
     files:
-      'c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf':
+      "c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf":
         exists: true
         filetype: file
         contains:
-        - "!/logging_serial_port=COM1,115200,N,8/"
-        - "cloudbaseinit.metadata.services.vmwareguestinfoservice.VMwareGuestInfoService"
-        - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
-        - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
-        - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
-        - "cloudbaseinit.plugins.common.networkconfig.NetworkConfigPlugin"
-        - "cloudbaseinit.plugins.common.sshpublickeys.SetUserSSHPublicKeysPlugin"
-        - "cloudbaseinit.plugins.common.userdata.UserDataPlugin"
-        - "cloudbaseinit.plugins.common.localscripts.LocalScriptsPlugin"
-        - "cloudbaseinit.plugins.windows.createuser.CreateUserPlugin"
-        - "cloudbaseinit.plugins.windows.extendvolumes.ExtendVolumesPlugin"
-      'c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init-unattend.conf':
+          - "!/logging_serial_port=COM1,115200,N,8/"
+          - "cloudbaseinit.metadata.services.vmwareguestinfoservice.VMwareGuestInfoService"
+          - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
+          - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
+          - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
+          - "cloudbaseinit.plugins.common.networkconfig.NetworkConfigPlugin"
+          - "cloudbaseinit.plugins.common.sshpublickeys.SetUserSSHPublicKeysPlugin"
+          - "cloudbaseinit.plugins.common.userdata.UserDataPlugin"
+          - "cloudbaseinit.plugins.common.localscripts.LocalScriptsPlugin"
+          - "cloudbaseinit.plugins.windows.createuser.CreateUserPlugin"
+          - "cloudbaseinit.plugins.windows.extendvolumes.ExtendVolumesPlugin"
+      "c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init-unattend.conf":
         exists: true
         filetype: file
         contains:
-        - "metadata_services=cloudbaseinit.metadata.services.vmwareguestinfoservice.VMwareGuestInfoService"
+          - "metadata_services=cloudbaseinit.metadata.services.vmwareguestinfoservice.VMwareGuestInfoService"
   amazon:
     windows-service:
 
     files:
-      'c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf':
+      "c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf":
         exists: true
         filetype: file
         contains:
-        - "!/logging_serial_port=COM1,115200,N,8/"
-        - "metadata_services=cloudbaseinit.metadata.services.ec2service.EC2Service"
-        - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
-        - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
-        - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
-        - "cloudbaseinit.plugins.common.sshpublickeys.SetUserSSHPublicKeysPlugin"
+          - "!/logging_serial_port=COM1,115200,N,8/"
+          - "metadata_services=cloudbaseinit.metadata.services.ec2service.EC2Service"
+          - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
+          - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
+          - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
+          - "cloudbaseinit.plugins.common.sshpublickeys.SetUserSSHPublicKeysPlugin"
 
   nutanix:
     windows-service:
 
     files:
-      'c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf':
+      "c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init.conf":
         exists: true
         filetype: file
         contains:
-        - "!/logging_serial_port=COM1,115200,N,8/"
-        - "cloudbaseinit.metadata.services.configdrive.ConfigDriveService"
-        - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
-        - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
-        - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
-        - "cloudbaseinit.plugins.common.sshpublickeys.SetUserSSHPublicKeysPlugin"
-        - "cloudbaseinit.plugins.common.userdata.UserDataPlugin"
-        - "cloudbaseinit.plugins.common.localscripts.LocalScriptsPlugin"
-        - "cloudbaseinit.plugins.windows.createuser.CreateUserPlugin"
-        - "cloudbaseinit.plugins.windows.extendvolumes.ExtendVolumesPlugin"
-      'c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init-unattend.conf':
+          - "!/logging_serial_port=COM1,115200,N,8/"
+          - "cloudbaseinit.metadata.services.configdrive.ConfigDriveService"
+          - "cloudbaseinit.plugins.common.ephemeraldisk.EphemeralDiskPlugin"
+          - "cloudbaseinit.plugins.common.mtu.MTUPlugin"
+          - "cloudbaseinit.plugins.common.sethostname.SetHostNamePlugin"
+          - "cloudbaseinit.plugins.common.sshpublickeys.SetUserSSHPublicKeysPlugin"
+          - "cloudbaseinit.plugins.common.userdata.UserDataPlugin"
+          - "cloudbaseinit.plugins.common.localscripts.LocalScriptsPlugin"
+          - "cloudbaseinit.plugins.windows.createuser.CreateUserPlugin"
+          - "cloudbaseinit.plugins.windows.extendvolumes.ExtendVolumesPlugin"
+      "c:/program files/Cloudbase Solutions/Cloudbase-init/conf/cloudbase-init-unattend.conf":
         exists: true
         filetype: file
         contains:
-        - "metadata_services=cloudbaseinit.metadata.services.base.EmptyMetadataService"
+          - "metadata_services=cloudbaseinit.metadata.services.base.EmptyMetadataService"
