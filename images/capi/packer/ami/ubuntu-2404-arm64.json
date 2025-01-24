@@ -9,16 +9,16 @@
 	"ami_filter_owners": "099720109477",
 	"root_device_name": "/dev/sda1",
 	"ssh_username": "ubuntu",
-	"kubernetes_semver": "v1.31.0",
+	"kubernetes_semver": "v1.32.0",
 	"goss_arch": "arm",
 	"ami_groups": "",
-  "snapshot_groups": "",
+	"snapshot_groups": "",
 	"ansible_extra_vars": "pinned_debs=\"cloud-init=24.1.3-0ubuntu3\"",
 
- 	"aws_region": "us-east-2",
-	"vpc_id": "vpc-0767bd7a296216186",
-	"subnet_id": "subnet-0193deecb3d626830",
-	"ssh_keypair_name": "kubeaid-demo",
-	"ssh_private_key_file": "../../../guides/aws/kubeaid-demo.pem",
-	"ami_regions": "us-east-2"
+	"aws_region": "eu-west-1",
+	"vpc_id": "vpc-0718125246e78e14f",
+	"subnet_id": "subnet-07b8079ed567a0623",
+	"ssh_keypair_name": "capi-ami-provisioner",
+	"ssh_private_key_file": "../../capi-ami-provisioner.pem",
+	"ami_regions": "eu-west-1"
 }
