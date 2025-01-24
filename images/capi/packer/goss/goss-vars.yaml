@@ -420,8 +420,8 @@ ubuntu:
       snap.amazon-ssm-agent.amazon-ssm-agent.service:
         enabled: true
         running: true
-    package:
-      linux-tools-virtual:
+    # package:
+    #   linux-tools-virtual:
     command:
       snap list | grep 'amazon-ssm-agent' | awk -F' ' '{print $1}':
         exit-status: 0
