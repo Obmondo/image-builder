@@ -12,14 +12,14 @@ fi
 az account set -s ${AZURE_SUBSCRIPTION_ID} >/dev/null 2>&1
 eval "$tracestate"
 
-export RESOURCE_GROUP_NAME="${RESOURCE_GROUP_NAME:-cluster-api-images}"
+export RESOURCE_GROUP_NAME="${RESOURCE_GROUP_NAME:-kubeaid-demo-azure}"
 export AZURE_LOCATION="${AZURE_LOCATION:-northcentralus}"
 if ! az group show -n ${RESOURCE_GROUP_NAME} -o none 2>/dev/null; then
   az group create -n ${RESOURCE_GROUP_NAME} -l ${AZURE_LOCATION} --tags ${TAGS:-}
 fi
 CREATE_TIME="$(date +%s)"
 RANDOM_SUFFIX="$(head /dev/urandom | LC_ALL=C tr -dc a-z | head -c 4 ; echo '')"
-export GALLERY_NAME="${GALLERY_NAME:-ClusterAPI${CREATE_TIME}${RANDOM_SUFFIX}}"
+export GALLERY_NAME="${GALLERY_NAME:-capiimages}"
 
 # Hack to set only build_resource_group_name or location, a better solution is welcome
 # https://developer.hashicorp.com/packer/plugins/builders/azure/arm#build_resource_group_name
@@ -93,6 +93,7 @@ create_image_definition() {
     --hyper-v-generation ${3} \
     --os-type ${4} \
     --features ${5:-''} \
+    --architecture Arm64 \
     "${plan_args[@]}" # TODO: Delete this line after the image is GA
 }
 
@@ -156,6 +157,9 @@ case ${SIG_TARGET} in
   ;;
   ubuntu-2404-gen2)
     create_image_definition ${SIG_TARGET} "24_04-lts-gen2" "V2" "Linux"
+  ;;
+  ubuntu-2404-arm64-gen2)
+    create_image_definition ${SIG_TARGET} "24_04-lts" "V2" "Linux"
   ;;
   ubuntu-2404-cvm)
     create_image_definition ${SIG_TARGET} "24_04-lts-cvm" "V2" "Linux" ${SECURITY_TYPE_CVM_SUPPORTED_FEATURE}

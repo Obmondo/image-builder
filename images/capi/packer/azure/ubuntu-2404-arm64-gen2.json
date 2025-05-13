@@ -1,0 +1,35 @@
+{
+  "build_name": "ubuntu-2404-arm64-gen2",
+
+  "distribution": "ubuntu",
+  "distribution_release": "noble",
+  "distribution_version": "2404",
+  "image_publisher": "Canonical",
+  "image_offer": "ubuntu-24_04-lts",
+  "image_sku": "server-arm64",
+
+  "use_azure_cli_auth": "true",
+
+  "subscription_id": "c4508db5-f783-4ac1-9221-1116c3a6db47",
+  "resource_group_name": "kubeaid-demo-azure",
+  "storage_account_name": "capiimages",
+  "azure_location": "northcentralus",
+
+  "build_resource_group_name": "kubeaid-demo-azure",
+
+  "virtual_network_resource_group_name": "kubeaid-demo-azure",
+  "virtual_network_name": "capi-image-builder",
+  "private_virtual_network_with_public_ip": "true",
+  "virtual_network_subnet_name": "default",
+
+  "vm_size": "Standard_D2ps_v6",
+  "os_disk_size_gb": "30",
+
+  "kubernetes_semver": "v1.32.0",
+  "goss_arch": "arm",
+
+  "shared_image_gallery_name": "capiimages",
+  "image_name": "capi-ubuntu-2404-arm64-gen2",
+  "sig_image_version": "1.32.0",
+  "replication_regions": "northcentralus"
+}

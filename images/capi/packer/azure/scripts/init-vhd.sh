@@ -16,7 +16,7 @@ az account set -s ${AZURE_SUBSCRIPTION_ID} >/dev/null 2>&1
 eval "$tracestate"
 
 echo "Create storage account"
-export RESOURCE_GROUP_NAME="${RESOURCE_GROUP_NAME:-cluster-api-images}"
+export RESOURCE_GROUP_NAME="${RESOURCE_GROUP_NAME:-kubeaid-demo-azure}"
 export AZURE_LOCATION="${AZURE_LOCATION:-northcentralus}"
 if ! az group show -n ${RESOURCE_GROUP_NAME} -o none 2>/dev/null; then
   az group create -n ${RESOURCE_GROUP_NAME} -l ${AZURE_LOCATION} --tags ${TAGS:-}
@@ -31,7 +31,7 @@ RANDOMIZE_STORAGE_ACCOUNT="${RANDOMIZE_STORAGE_ACCOUNT:-"false"}"
 if [ "$RANDOMIZE_STORAGE_ACCOUNT" == "true" ]; then
   export AZURE_LOCATION="$(get_random_region)"
 fi
-export STORAGE_ACCOUNT_NAME="${STORAGE_ACCOUNT_NAME:-capi${CREATE_TIME}${RANDOM_SUFFIX}}"
+export STORAGE_ACCOUNT_NAME="${STORAGE_ACCOUNT_NAME:-capiimages}"
 az storage account check-name --name ${STORAGE_ACCOUNT_NAME}
 az storage account create -n ${STORAGE_ACCOUNT_NAME} -g ${RESOURCE_GROUP_NAME} -l ${AZURE_LOCATION} --allow-blob-public-access false
 

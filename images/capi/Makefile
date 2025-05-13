@@ -660,6 +660,7 @@ build-ami-all: $(AMI_BUILD_TARGETS) ## Builds all AMIs
 build-azure-sig-ubuntu-2004: ## Builds Ubuntu 20.04 Azure managed image in Shared Image Gallery
 build-azure-sig-ubuntu-2204: ## Builds Ubuntu 22.04 Azure managed image in Shared Image Gallery
 build-azure-sig-ubuntu-2404: ## Builds Ubuntu 24.04 Azure managed image in Shared Image Gallery
+build-azure-sig-ubuntu-2404-arm64-gen2: ## Builds Ubuntu 24.04 (ARM64 based) Azure managed image in Shared Image Gallery
 build-azure-sig-centos-7: ## Builds CentOS 7 Azure managed image in Shared Image Gallery
 build-azure-sig-mariner-2: ## Builds Azure Linux 2 Azure managed image in Shared Image Gallery
 build-azure-sig-azurelinux-3: ## Builds Azure Linux 3 Azure managed image in Shared Image Gallery
@@ -896,6 +897,7 @@ validate-azure-sig-rhel-8: ## Validates RHEL 8 Azure managed image in Shared Ima
 validate-azure-sig-ubuntu-2004: ## Validates Ubuntu 20.04 Azure managed image in Shared Image Gallery Packer config
 validate-azure-sig-ubuntu-2204: ## Validates Ubuntu 22.04 Azure managed image in Shared Image Gallery Packer config
 validate-azure-sig-ubuntu-2404: ## Validates Ubuntu 24.04 Azure managed image in Shared Image Gallery Packer config
+validate-azure-sig-ubuntu-2404-arm64-gen2: ## Validates Ubuntu 24.04 (ARM64 based) Azure managed image in Shared Image Gallery Packer config
 validate-azure-sig-windows-2019-containerd: ## Validate Windows Server 2019 with containerd Azure managed image in Shared Image Gallery Packer config
 validate-azure-sig-windows-2022-containerd: ## Validate Windows Server 2022 with containerd Azure managed image in Shared Image Gallery Packer config
 validate-azure-sig-windows-2025-containerd: ## Validate Windows Server 2025 with containerd Azure managed image in Shared Image Gallery Packer config
